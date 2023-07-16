@@ -90,3 +90,22 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
+
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
+
+
+def pay(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        amount = Order.get_cart_in_paisa
+
+        client = razorpay.Client(auth=("rzp_test_Po0ByeOrpzroyx", "5LQbaXtQSjNp7dtHHdltpqkN"))
+
+        payment = client.order.create({'amount': amount, 'currency': 'INR',
+                                       'payment_capture': '1'})
+    return render(request, 'index.html')
+
+@csrf_exempt
+def success(request):
+    return render(request, "success.html")

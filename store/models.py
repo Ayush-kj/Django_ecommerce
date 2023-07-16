@@ -52,6 +52,12 @@ class Order(models.Model):
 		orderitems = self.orderitem_set.all()
 		total = sum([item.get_total for item in orderitems])
 		return total 
+	
+	@property
+	def get_cart_in_paisa(self):
+		orderitems = self.orderitem_set.all()
+		total = sum([item.get_total for item in orderitems])
+		return total
 
 	@property
 	def get_cart_items(self):

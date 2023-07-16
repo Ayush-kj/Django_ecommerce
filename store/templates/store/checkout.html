@@ -41,11 +41,11 @@
 			</div>
 
 			<br>
-			<div class="box-element hidden" id="payment-info">
+			{% comment %} <div class="box-element hidden" id="payment-info">
 				<small>Paypal Options</small>
-				<!--<button id="make-payment">Make payment</button>-->
+				<button id="make-payment">Make payment</button>
 				<div id="paypal-button-container"></div>
-			</div>
+			</div> {% endcomment %}
 			
 		</div>
 
@@ -64,12 +64,24 @@
 				</div>
 				{% endfor %}
 				<h5>Items:   {{order.get_cart_items}}</h5>
-				<h5>Total:   ₹{{order.get_cart_total|floatformat:2}}</h5>
+				<h5>Total:   ₹{{order.get_cart_i}}</h5>
 			</div>
 		</div>
 	</div>
+	{% comment %}  {% endcomment %}
+	<script src="https://checkout.razorpay.com/v1/checkout.js"
+	data-key="rzp_test_Po0ByeOrpzroyx"
+	
+	data-amount="50" data-currency="INR"
+	data-order_id="{{payment.id}}"
+	data-buttontext="Pay with Razorpay"
+	data-name="Ecom Store"
+	data-description=""
+	data-image="" data-prefill.name="Ayush" data-prefill.email="ayushjais1902@gmai.com"
+	data-theme.color="#F37254"></script>
+	{% comment %}  {% endcomment %}
 
-	<script src="https://www.paypal.com/sdk/js?client-id=YOUR-CLIENT-ID&currency=USD&disable-funding=credit"></script>
+	{% comment %} <script src="https://www.paypal.com/sdk/js?client-id=YOUR-CLIENT-ID&currency=USD&disable-funding=credit"></script>
 
 	<script>
 		var total = '{{order.get_cart_total}}'
@@ -101,7 +113,7 @@
             }
 
         }).render('#paypal-button-container');
-    </script>
+    </script> {% endcomment %}
 
 	<script type="text/javascript">
 		var shipping = '{{order.shipping}}'
